@@ -1,9 +1,9 @@
 <template>
         <h1>Table v1</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ex placeat quasi! Ex perspiciatis numquam unde repudiandae velit fuga veniam, expedita inventore et officia quos dolore temporibus doloribus repellat! Dolor.</p>
+        <p>Ejemplo de propiedad computada y filtro en tablas.</p>
         <button @click="search">Fetch</button>
         <div class="filter_title">
-                <input type="text" placeholder="Search by title" v-model="titleFilter" @keyup="updateTable" />
+                <input type="text" placeholder="Search by title" v-model="titleFilter" />
         </div>
         <div class="table">
                 <table>
@@ -27,14 +27,13 @@
         </div>
 </template>
 <script setup>
-//https://openlibrary.org/search.json?q=$query
 
-import { onMounted, ref, computed } from 'vue'
+import { ref, computed } from 'vue'
 
 const results = ref([])
 const titleFilter = ref('')
 
-const filteredResults = computed(() => {
+const filteredResults = computed(() => { // propiedad computada para filtrar los resultados
         return results.value.filter(result => {
                 return result.title.toLowerCase().includes(titleFilter.value.toLowerCase())
         })
